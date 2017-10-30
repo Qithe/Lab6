@@ -35,8 +35,8 @@
             </Grid>
         </GroupBox>
         <StatusBar Margin="0,0,-0.2,0" Height="36" VerticalAlignment="Bottom">
-            <Button x:Name="Button_StartStopDay" Content="Button" Width="75"/>
-            <Button x:Name="Button_RestartDay" Content="Button" Width="75"/>
+            <Button x:Name="Button_StartStopDay" Content="Start/stop" Width="75"/>
+            <Button x:Name="Button_RestartDay" Content="Restart" Width="75"/>
             <Label x:Name="Lable_TimeLeft" Content="Label"/>
             <Slider x:Name="Slider_TimeModifyer" Width="130" TickPlacement="BottomRight" Maximum="5" TickFrequency="0"/>
             <Label x:Name="Lable_TimeModifyer" Content="Label"/>

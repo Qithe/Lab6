@@ -10,7 +10,7 @@ namespace Lab6
     {
         BartenderClass(string name) : base(name)
         {
-
+            
         }
     }
 }

@@ -17,6 +17,8 @@ namespace Lab6
         public void LetInPatrons()
         {
             barQueue.Enqueue(outsideQueue.ElementAt(0));
+            PatronClass P = outsideQueue.ElementAt(0);
+            outsideQueue.TryDequeue(out P);
         }
     }
     

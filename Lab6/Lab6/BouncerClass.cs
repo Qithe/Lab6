@@ -12,6 +12,17 @@ namespace Lab6
         {
 
         }
+
+        public void BouncerControler()
+        {
+            //creates all patrons
+            //Checks if the bar is closed
+                
+                //Checks id for x sec and prints a message
+                //print message he is waiting
+                //Goes to sleep for 3-7 sec
+            //if not, prints message that gone home and is disabled
+        }
     }
     
 }

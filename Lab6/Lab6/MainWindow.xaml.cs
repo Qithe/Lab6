@@ -24,6 +24,7 @@ namespace Lab6
         ConcurrentQueue<ChairClass> chairList = new ConcurrentQueue<ChairClass>();
         ConcurrentQueue<AgentClass> employeeList = new ConcurrentQueue<AgentClass>();
         ShelfClass shelf = new ShelfClass();
+        Random rnd = new Random();
 
         public MainWindow()
         {
@@ -46,6 +47,10 @@ namespace Lab6
                 shelf.ItemList.Enqueue(new BeerJugClass((ushort)i));
             }
             
+        }
+        public void StartSimulation()
+        {
+
         }
     }
 }

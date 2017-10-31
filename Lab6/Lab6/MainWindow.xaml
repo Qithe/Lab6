@@ -12,7 +12,7 @@
         </Grid.ColumnDefinitions>
         <GroupBox x:Name="GroupBox_Bartenders" Header="Bartenders" Margin="10,10,834.8,41">
             <Grid x:Name="Grid_Bartenders" Margin="0,0,-2.8,-12.6">
-                <ListBox x:Name="ListBox_Bartender" Margin="0,0,0,30"/>
+                <ListBox x:Name="ListBox_Bartender" Margin="0,0,0,30" Grid.Column="0"/>
                 <RadioButton x:Name="RadioButton_Bartender" Content="Pause all Bartenders" Margin="10,0,55,9" Height="16" VerticalAlignment="Bottom"/>
             </Grid>
         </GroupBox>

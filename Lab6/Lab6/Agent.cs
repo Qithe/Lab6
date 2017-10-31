@@ -17,7 +17,7 @@ namespace Lab6
         Random rnd = new Random();
         
 
-        public AgentClass(string name)
+        public AgentClass(string name="")
         {
             Name = getRandomName();
         }

@@ -55,9 +55,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BeerJugClass.cs" />
+    <Compile Include="ItemContainerClass.cs" />
     <Compile Include="ItemsClass.cs" />
     <Compile Include="ServicePersonelClass.cs" />
-    <Compile Include="TableClass.cs" />
+    <Compile Include="ChairClass.cs" />
+    <Compile Include="ShelfClass.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

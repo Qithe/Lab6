@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class ItemsClass
+    class ItemContainerClass
     {
-        private bool IsClean { get; set; }
-        private bool IsEmpty { get; set; }
         private ushort Id { get; set; }
-
-        public ItemsClass(ushort id)
+        public ConcurrentQueue<ItemsClass> ItemList = new ConcurrentQueue<ItemsClass>();
+        public ItemContainerClass(ushort id = 0)
         {
-            this.IsClean = true;
-            this.IsEmpty = true;
             this.Id = id;
         }
     }

@@ -8,7 +8,7 @@ namespace Lab6
 {
     class BartenderClass : AgentClass
     {
-        BartenderClass(string name) : base(name)
+        BartenderClass(string name="") : base(name)
         {
 
         }

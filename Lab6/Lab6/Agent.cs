@@ -10,7 +10,7 @@ namespace Lab6
     {
         private string Name { get; set; }
 
-        public AgentClass(string name)
+        public AgentClass(string name="")
         {
             this.Name = name;
         }

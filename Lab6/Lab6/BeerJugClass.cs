@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class BeerJugClass:ItemsClass
+    class BeerJugClass : ItemsClass
     {
+        
+
+        public BeerJugClass(ushort id):base(id)
+        {
+            
+        }
     }
 }

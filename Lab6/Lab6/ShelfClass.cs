@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class TableClass : ItemsClass
+    class ShelfClass : ItemContainerClass
     {
+        public ShelfClass(ushort id=0) : base(id)
+        {
+
+        }
     }
 }

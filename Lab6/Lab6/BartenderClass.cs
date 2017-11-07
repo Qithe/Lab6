@@ -2,15 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Lab6
 {
     class BartenderClass : AgentClass
     {
-        BartenderClass(string name="") : base(name)
+        private static ushort BartenderID = 0;
+        public ushort ThisBartenderID;
+        BartenderClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
-            
+            BartenderID++;
+            ThisBartenderID = BartenderID;
+        }
+
+        public void BartenderControler()
+        {
+
+        }
+
+        public void GetBeerJug()
+        {
+
+        }
+
+        public void PourDrink()
+        {
+
+        }
+
+        public void ServeDrink()
+        {
+
         }
     }
 }

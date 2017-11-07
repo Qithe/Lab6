@@ -10,21 +10,19 @@ namespace Lab6
 {
     class AgentClass
     {
-        private string Name { get; set; }
+        public string AgentName { get; set; }
+        public const int x = 1000;
+        public Action<int, string, int> AddToListBox;
         public ConcurrentQueue<string> nameList = new ConcurrentQueue<string>();
         public ConcurrentQueue<PatronClass> outsideQueue = new ConcurrentQueue<PatronClass>();
         public ConcurrentQueue<PatronClass> barQueue = new ConcurrentQueue<PatronClass>();
-        Random rnd = new Random();
+        public Random rnd = new Random();
         
 
-        public AgentClass(string name="")
+        public AgentClass(Action<int, string, int> AddToListBox)
         {
-            Name = getRandomName();
-        }
-
-        public void runTask(Action run)
-        {
-
+            AgentName = getRandomName();
+            this.AddToListBox = AddToListBox;
         }
 
         public void generateNameList()
@@ -43,6 +41,7 @@ namespace Lab6
 
         public string getRandomName()
         {
+            generateNameList();
             int x = rnd.Next(nameList.Count);
             return nameList.ElementAt(x);
         }

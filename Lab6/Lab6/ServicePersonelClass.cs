@@ -8,9 +8,12 @@ namespace Lab6
 {
     class ServicePersonelClass : AgentClass
     {
-        ServicePersonelClass(string name) : base(name)
+        private static ushort ServiceID = 0;
+        public ushort ThisServiceID;
+        ServicePersonelClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
-
+            ServiceID++;
+            ThisServiceID = ServiceID;
         }
     }
 }

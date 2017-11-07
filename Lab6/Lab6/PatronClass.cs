@@ -9,14 +9,14 @@ namespace Lab6
 {
     class PatronClass : AgentClass
     {
-        public PatronClass(string name) : base(name)
+        public PatronClass(ushort id, string name) : base(id, name)
         {
             
         }
 
         public void Arrive()
         {
-            outsideQueue.Enqueue(new PatronClass(getRandomName()));
+            //outsideQueue.Enqueue(new PatronClass(getRandomName()));
         }
     }
 }

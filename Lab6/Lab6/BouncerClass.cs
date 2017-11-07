@@ -9,7 +9,7 @@ namespace Lab6
 {
     class BouncerClass:AgentClass
     {
-        BouncerClass(string name) : base(name)
+        BouncerClass(ushort id, string name) : base()
         {
 
         }

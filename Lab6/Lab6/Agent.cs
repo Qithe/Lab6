@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace Lab6
 {
-    class AgentClass
+    class AgentClass : ItemContainerClass
     {
         private string Name { get; set; }
         public ConcurrentQueue<string> nameList = new ConcurrentQueue<string>();
@@ -17,17 +17,17 @@ namespace Lab6
         Random rnd = new Random();
         
 
-        public AgentClass(string name="")
+        public AgentClass(ushort id = 0,string name="") : base(id)
         {
-            Name = getRandomName();
+            this.Name = getRandomName();
         }
 
-        public void runTask(Action run)
+        public void RunTask(Action run)
         {
 
         }
 
-        public void generateNameList()
+        public void GenerateNameList()
         {
             nameList.Enqueue("Samuel");
             nameList.Enqueue("Oscar");
@@ -39,6 +39,12 @@ namespace Lab6
             nameList.Enqueue("Jimmy");
             nameList.Enqueue("Rutger");
             nameList.Enqueue("Nils-Erik");
+            nameList.Enqueue("Bruno");
+            nameList.Enqueue("Emil");
+            nameList.Enqueue("Lars-Erik");
+            nameList.Enqueue("Steve");
+            nameList.Enqueue("Bill");
+            nameList.Enqueue("Elon");
         }
 
         public string getRandomName()

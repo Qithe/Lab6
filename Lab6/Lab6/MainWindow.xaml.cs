@@ -82,9 +82,26 @@ namespace Lab6
                     Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} arrived outside the bar"));
                 } 
             }
-            if (witchList == 1) //BarQueue
+            else if (witchList == 1) //BarQueue
             {
+                if(ListBox_Bouncers.Items.Count == 0)
+                {
+                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Add($"{time}. Bouncer let in {element}"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{time}. Bouncer let in {element}"));
+                }
+                
                 Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} went into the bar"));
+            }
+            else if (witchList == 2) //ChairQueue
+            {
+
+            }
+            else if(witchList == 3) //Washing Glass
+            {
+
             }
         }
     }

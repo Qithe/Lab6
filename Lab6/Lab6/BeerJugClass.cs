@@ -8,7 +8,7 @@ namespace Lab6
 {
     class BeerJugClass : ItemsClass
     {
-        
+        public bool isFull = false;
 
         public BeerJugClass(ushort id):base(id)
         {

@@ -36,5 +36,12 @@ namespace Lab6
         {
 
         }
+        public void BartenderController()
+        {
+            //if patrion in queue
+                //Take a jug
+                //Pour a jug
+                //Give Jug to patrion
+        }
     }
 }

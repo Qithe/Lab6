@@ -29,6 +29,7 @@ namespace Lab6
         ConcurrentQueue<ChairClass> chairList = new ConcurrentQueue<ChairClass>();
         ConcurrentQueue<AgentClass> employeeList = new ConcurrentQueue<AgentClass>();
         ShelfClass shelf = new ShelfClass();
+        ChairClass chairs = new ChairClass();
         Random rnd = new Random();
 
         bool haveLodedUi = false;
@@ -44,26 +45,26 @@ namespace Lab6
         public void CreateBar()
         {
             //Creates all employees and put em in to employe list
-            employeeList.Enqueue(new ServicePersonelClass((ushort)1));
+            //employeeList.Enqueue(new ServicePersonelClass(Adding));
             //employeeList.Enqueue(new BartenderClass((ushort)1));
             //employeeList.Enqueue(new BouncerClass((ushort)1));
             //Creates all chairs and put em it to chairlist
-            for (int i = 0; i < 9; i++)
-            {
-                chairList.Enqueue(new ChairClass((ushort)i));
-            }
-            
+            chairs.GenerateChairs();
+
             //Creates all em jugs
-            for (int i = 0; i < 8; i++)
-            {
-                //shelf.ItemList.Enqueue(new BeerJugClass((ushort)i));
-            }
+            shelf.GenerateShelf();
             
         }
         public void StartSimulation()
         {
+            CreateBar();
             BouncerClass bouncer = new BouncerClass(Adding);
+            BartenderClass bartender = new BartenderClass(Adding);
+            ServicePersonelClass waitress = new ServicePersonelClass(Adding);
+
             Task.Run(() => bouncer.BouncerControler());
+            Task.Run(() => bartender.BartenderController());
+            Task.Run(() => waitress.ServicePersonelController());
         }
 
         private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
@@ -99,13 +100,34 @@ namespace Lab6
                 
                 Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} went into the bar"));
             }
-            else if (witchList == 2) //ChairQueue
+            else if (witchList == 2) //Drinking
             {
-
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} sat down to drink"));
             }
             else if(witchList == 3) //Washing Glass
             {
 
+            }
+            else if(witchList == 4) //Close the bar
+            {
+                Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{time}. {element} closed the bar"));
+            }
+            else if(witchList == 5) //Go home
+            {
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} went home"));
+            }
+            else if(witchList == 6) //Serve Drink
+            {
+                if(ListBox_Bartender.Items.Count == 0)
+                {
+                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Add($"{time}. Bartender served {element} a beer"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Insert(0, $"{time}. bartender served {element} a beer"));
+                }
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} got a beer"));
+                
             }
             //Action startSP = ServicePersonelController;
         }

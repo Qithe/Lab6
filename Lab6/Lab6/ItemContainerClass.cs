@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class ItemContainerClass
+    public class ItemContainerClass
     {
         private ushort Id { get; set; }
-        public ConcurrentQueue<ItemsClass> ItemList = new ConcurrentQueue<ItemsClass>();
+        //public BlockingCollection<ItemsClass> ItemList = new BlockingCollection<ItemsClass>();
         public ItemContainerClass(ushort id = 0)
         {
             this.Id = id;

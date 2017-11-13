@@ -11,17 +11,21 @@ namespace Lab6
     class AgentClass : ItemContainerClass
     {
         public string AgentName { get; set; }
-        public const int x = 1000;
+        public const int sek = 1000;
+        public static int ElapsedTime { get; set; }
         public Action<int, string, int> AddToListBox;
-        public ConcurrentQueue<string> nameList = new ConcurrentQueue<string>();
-        public ConcurrentQueue<PatronClass> outsideQueue = new ConcurrentQueue<PatronClass>();
-        public ConcurrentQueue<PatronClass> barQueue = new ConcurrentQueue<PatronClass>();
+        public static BlockingCollection<PatronClass> outsideQueue = new BlockingCollection<PatronClass>();
+        public static BlockingCollection<PatronClass> barQueue = new BlockingCollection<PatronClass>();
+        public static BlockingCollection<PatronClass> chairQueue = new BlockingCollection<PatronClass>();
+        public Queue<string> nameList = new Queue<string>();
+        //public ConcurrentQueue<PatronClass> outsideQueue = new ConcurrentQueue<PatronClass>();
+        //public ConcurrentQueue<PatronClass> barQueue = new ConcurrentQueue<PatronClass>();
         public Random rnd = new Random();
         
 
         public AgentClass(Action<int, string, int> AddToListBox)
         {
-            AgentName = getRandomName();
+            AgentName = GetRandomName();
             this.AddToListBox = AddToListBox;
         }
 
@@ -45,9 +49,9 @@ namespace Lab6
             nameList.Enqueue("Elon");
         }
 
-        public string getRandomName()
+        public string GetRandomName()
         {
-            generateNameList();
+            GenerateNameList();
             int x = rnd.Next(nameList.Count);
             return nameList.ElementAt(x);
         }

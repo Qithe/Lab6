@@ -9,10 +9,22 @@ namespace Lab6
 {
     class ChairClass : ItemContainerClass
     {
-        
-        public ChairClass(ushort id) : base(id)
+        public static BlockingCollection<ChairClass> ChairList = new BlockingCollection<ChairClass>();
+        public BeerJugClass JugAtChair = new BeerJugClass(0);
+        public bool PatronAtChair = false;
+
+        public ChairClass(ushort id = 0) : base(id)
         {
-            ConcurrentQueue<PatronClass> PatronList = new ConcurrentQueue<PatronClass>();
+
         }
+
+        public void GenerateChairs()
+        {
+            for(int i = 0; i < 15; i++)
+            {
+                ChairList.Add(new ChairClass((ushort)i));
+            }
+        }
+
     }
 }

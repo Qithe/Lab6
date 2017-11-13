@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class BeerJugClass : ItemsClass
+    class BeerJugClass
     {
-        public bool isFull = false;
-
-        public BeerJugClass(ushort id):base(id)
+        public bool IsClean { get; set; }
+        public bool IsEmpty { get; set; }
+        private ushort Id { get; set; }
+        public BeerJugClass(ushort id)
         {
-            
+            Id = id;
         }
     }
 }

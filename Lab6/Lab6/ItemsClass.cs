@@ -8,15 +8,10 @@ namespace Lab6
 {
     class ItemsClass
     {
-        private bool IsClean { get; set; }
-        private bool IsEmpty { get; set; }
-        private ushort Id { get; set; }
+        
 
         public ItemsClass(ushort id)
         {
-            this.IsClean = true;
-            this.IsEmpty = true;
-            this.Id = id;
         }
     }
 }

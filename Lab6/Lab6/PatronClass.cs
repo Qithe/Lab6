@@ -12,7 +12,8 @@ namespace Lab6
     {
         private static ushort PatronID = 0;
         public ushort ThisPatronID;
-        public BeerJugClass Jug;
+        public BeerJugClass Jug = new BeerJugClass(0);
+        private int chairID;
 
         public PatronClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
@@ -22,22 +23,49 @@ namespace Lab6
 
         public void PatronController()
         {
-            while (!Jug.isFull)
+            while (Jug.IsEmpty == true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(sek);
             }
-            //Look for free chair
-            //Chair.IsOccupied = true;
-            Drink();
+            
+            while (Jug.IsEmpty == false)
+            {
+                Thread.Sleep(3 * sek);
+                //Look for free chair
+                while (!LookForChair())
+                {
+                    Thread.Sleep(sek);
+                }
+                Thread.Sleep(rnd.Next(10, 20) * sek);
+                Drink();
+            }
         }
         
         public void Drink()
         {
-            Thread.Sleep(rnd.Next(10000, 20000));
-            Jug.isFull = false;
+            AddToListBox(ElapsedTime, $"{AgentName} [{ThisPatronID}]", 2);
+            Thread.Sleep(rnd.Next(10, 20)*sek);
+            Jug.IsEmpty = true;
+            Jug.IsClean = false;
+            ChairClass.ChairList.ElementAt(chairID).JugAtChair = Jug;
+            // Jug.isFull = false;
             //Jug.IsClean = false;
             //Chair.GlassList.Add(Jug);
             // NumberOfPatrons--;
+        }
+
+        public bool LookForChair()
+        {
+            for(int i = 0; i < ChairClass.ChairList.Count; i++)
+            {
+                if(!ChairClass.ChairList.ElementAt(i).PatronAtChair && ChairClass.ChairList.ElementAt(i).JugAtChair.IsClean)
+                {
+                    ChairClass.ChairList.ElementAt(i).PatronAtChair = true;
+                    chairID = i;
+                    return true;
+                } 
+            }
+            return false;
         }
     }
 }

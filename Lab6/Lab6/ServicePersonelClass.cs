@@ -11,9 +11,8 @@ namespace Lab6
     {
         private static ushort ServiceID = 0;
         public ushort ThisServiceID;
-        ServicePersonelClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         ConcurrentQueue<BeerJugClass> WashList = new ConcurrentQueue<BeerJugClass>();
-        public ServicePersonelClass(ushort id, string name = "") : base(id,name)
+        public ServicePersonelClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
             ServiceID++;
             ThisServiceID = ServiceID;

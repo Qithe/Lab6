@@ -11,37 +11,60 @@ namespace Lab6
     {
         private static ushort BartenderID = 0;
         public ushort ThisBartenderID;
-        BartenderClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
+        BeerJugClass BartenderJug = new BeerJugClass(0);
+        public BartenderClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
             BartenderID++;
             ThisBartenderID = BartenderID;
         }
 
-        public void BartenderControler()
-        {
-
-        }
-
-        public void GetBeerJug()
-        {
-
-        }
-
-        public void PourDrink()
-        {
-
-        }
-
-        public void ServeDrink()
-        {
-
-        }
         public void BartenderController()
         {
+            while(barQueue.Count == 0)
+            {
+                Thread.Sleep(sek);
+            }
+            while(ElapsedTime < 100)
+            {
+                GetBeerJug();
+                PourDrink();
+                ServeDrink();
+            }
+            while(barQueue.Count > 0)
+            {
+                GetBeerJug();
+                PourDrink();
+                ServeDrink();
+            }
+            
             //if patrion in queue
                 //Take a jug
                 //Pour a jug
                 //Give Jug to patrion
+        }
+
+        public void GetBeerJug()
+        {
+            while(ShelfClass.ShelfList.Count == 0)
+            {
+                Thread.Sleep(sek);
+            }
+            BartenderJug = ShelfClass.ShelfList.Take();
+            Thread.Sleep(3 * sek);
+        }
+
+        public void PourDrink()
+        {
+            BartenderJug.IsEmpty = false;
+            Thread.Sleep(3 * sek);
+        }
+
+        public void ServeDrink()
+        {
+            AddToListBox(ElapsedTime, $"{barQueue.First().AgentName} [{barQueue.First().ThisPatronID}]", 6);
+            barQueue.First().Jug = BartenderJug;
+            chairQueue.Add(barQueue.Take());
+            Thread.Sleep(sek);
         }
     }
 }

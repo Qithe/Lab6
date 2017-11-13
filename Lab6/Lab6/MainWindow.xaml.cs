@@ -22,7 +22,7 @@ namespace Lab6
     /// </summary>
     /// 
 
-    
+    public delegate void AgentPauser(List<AgentClass> agentList, bool paused);
 
     public partial class MainWindow : Window
     {
@@ -30,6 +30,7 @@ namespace Lab6
         ConcurrentQueue<AgentClass> employeeList = new ConcurrentQueue<AgentClass>();
         ShelfClass shelf = new ShelfClass();
         Random rnd = new Random();
+        AgentPauser agentPauser = new AgentPauser(AgentStateChanger);
 
         bool haveLodedUi = false;
 
@@ -39,6 +40,22 @@ namespace Lab6
             haveLodedUi = true;
 
 
+        }
+
+        public static void AgentStateChanger(List<AgentClass> agentList, bool paused)
+        {
+            foreach (AgentClass A in agentList)
+            {
+                if (paused)
+                {
+                    //PUT DAT MOFO TO SLEEP
+                }
+                else if (!paused)
+                {
+                    //WAKE EM UP!
+                }
+            }
+            
         }
 
         public void CreateBar()
@@ -79,6 +96,16 @@ namespace Lab6
             }
             
             
+        }
+
+        private void RadioButton_Patrons_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RadioButton_Patrons_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

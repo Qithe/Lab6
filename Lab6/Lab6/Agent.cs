@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace Lab6
 {
-    class AgentClass : ItemContainerClass
+    public class AgentClass : ItemContainerClass
     {
         private string Name { get; set; }
         public ConcurrentQueue<string> nameList = new ConcurrentQueue<string>();

@@ -31,7 +31,7 @@
         <GroupBox x:Name="GroupBox_Patrons" Header="Patrons" Margin="960,0,-5.6,51" HorizontalAlignment="Center" Width="320">
             <Grid x:Name="Grid_Patrons" Margin="0,0,-2.8,-12.6">
                 <ListBox x:Name="ListBox_Patrons" Margin="0,0,0,30"/>
-                <RadioButton x:Name="RadioButton_Patrons" Content="Pause all Patrons" Margin="10,0,71,9" Height="16" VerticalAlignment="Bottom"/>
+                <RadioButton x:Name="RadioButton_Patrons" Content="Pause all Patrons" Margin="10,0,71,9" Height="16" VerticalAlignment="Bottom" Checked="RadioButton_Patrons_Checked" Click="RadioButton_Patrons_Click"/>
             </Grid>
         </GroupBox>
         <StatusBar Margin="0,0,-0.2,0" Height="36" VerticalAlignment="Bottom">
@@ -42,8 +42,8 @@
             <Label x:Name="Lable_TimeModifyer" Content="0"/>
         </StatusBar>
         <GroupBox x:Name="GroupBox_ControlPanel" Header="Control Panel" Margin="1328,0,-483.6,51.4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="237" Margin="0,450,0,0" VerticalAlignment="Top" Width="960">
-            <Grid HorizontalAlignment="Left" Height="152" VerticalAlignment="Top" Width="940" Margin="10,10,-2.8,0"/>
+        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="247" Margin="0,450,0,0" VerticalAlignment="Top" Width="960">
+            <Grid HorizontalAlignment="Left" Width="940" Margin="10,10,-2.8,0"/>
         </GroupBox>
     </Grid>
 </Window>

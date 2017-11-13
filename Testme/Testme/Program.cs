@@ -6,26 +6,28 @@ using System.Threading.Tasks;
 
 namespace Testme
 {
-    //Skapa en funktion som tar en List<T> och en Func<T, T, T> delegate som parametrar
-    //och returnerar ett värde av typen T.
 
-    //Du bestämmer själv vilken datatyp du vill använda i stället för T.
-
-    //Funktionen ska heta Reduce och den ska reducera listan till ett värde.
-
-    //Om listan till exempel består av strängar så är ett sätt att reducera den att konkatenera
-    //alla strängar i listan och returnera resultatet.
-
-    //Om listan består av tal så kan man reducera listan genom att räkna ut till exempel summan,
-    //max- eller min-värdet. Delegaten ska alltså vara funktionen som utför själva reduceringen.
 
     //public delegate void Action();
     //public delegate void EvenOdd(int num);
-    public delegate int Summer(List<int> list, Func<int, int, int> func);
-    public delegate int Func(Func<int, int, int> func);
-
+    //public delegate int Summer(List<int> list, Func<int, int, int> func);
+    //public delegate int Func(Func<int, int, int> func);
+    public delegate void Event();
     public class Program
     {
+        static void Main(string[] args)
+        {
+
+            
+
+
+            
+
+
+
+            Console.Read();
+        }
+        /*
         static void Main(string[] args)
         {
             Summer summer = new Summer(Reduce);

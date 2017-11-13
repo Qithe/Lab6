@@ -7,7 +7,7 @@ using System.Collections.Concurrent;
 
 namespace Lab6
 {
-    class PatronClass : AgentClass
+    public class PatronClass : AgentClass
     {
         public PatronClass(ushort id, string name) : base(id, name)
         {

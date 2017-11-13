@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class ItemContainerClass
+    public class ItemContainerClass
     {
         private ushort Id { get; set; }
         public ConcurrentQueue<ItemsClass> ItemList = new ConcurrentQueue<ItemsClass>();

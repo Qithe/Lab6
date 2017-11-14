@@ -16,6 +16,10 @@ namespace Lab6
         }
         public void ServicePersonelController()
         {
+            do
+            {
+                
+            } while (true);
             //if shelf not full, check if chairs has empty jugs
             
                 //Go get jug(s) jug

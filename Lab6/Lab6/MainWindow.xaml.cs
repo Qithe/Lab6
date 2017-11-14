@@ -23,6 +23,7 @@ namespace Lab6
     /// 
 
     public delegate void AgentPauser(List<AgentClass> agentList, bool paused);
+    
 
     public partial class MainWindow : Window
     {
@@ -98,14 +99,9 @@ namespace Lab6
             
         }
 
-        private void RadioButton_Patrons_Checked(object sender, RoutedEventArgs e)
+        private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void RadioButton_Patrons_Click(object sender, RoutedEventArgs e)
-        {
-
+            Slider_TimeModifyer.IsEnabled ^= true;
         }
     }
 }

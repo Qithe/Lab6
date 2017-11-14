@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace Lab6
 {
-    class AgentClass : ItemContainerClass
+    public class AgentClass : ItemContainerClass
     {
         public string AgentName { get; set; }
         public const int sek = 1000;

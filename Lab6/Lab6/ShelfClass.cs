@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class ShelfClass : ItemContainerClass
+    public class ShelfClass : ItemContainerClass
     {
         public static BlockingCollection<BeerJugClass> ShelfList = new BlockingCollection<BeerJugClass>();
         public static int ShelfSize = 10;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class ItemsClass
+    public class ItemsClass
     {
         
 

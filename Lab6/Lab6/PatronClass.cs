@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 
 namespace Lab6
 {
-    class PatronClass : AgentClass
+    public class PatronClass : AgentClass
     {
         private static ushort PatronID = 0;
         public ushort ThisPatronID;

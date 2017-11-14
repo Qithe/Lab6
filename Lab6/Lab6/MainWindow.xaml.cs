@@ -22,6 +22,7 @@ namespace Lab6
     /// </summary>
     /// 
 
+    public delegate void AgentPauser(List<AgentClass> agentList, bool paused);
     
 
     public partial class MainWindow : Window
@@ -31,6 +32,7 @@ namespace Lab6
         ShelfClass shelf = new ShelfClass();
         ChairClass chairs = new ChairClass();
         Random rnd = new Random();
+        AgentPauser agentPauser = new AgentPauser(AgentStateChanger);
 
         bool haveLodedUi = false;
 
@@ -40,6 +42,22 @@ namespace Lab6
             haveLodedUi = true;
 
 
+        }
+
+        public static void AgentStateChanger(List<AgentClass> agentList, bool paused)
+        {
+            foreach (AgentClass A in agentList)
+            {
+                if (paused)
+                {
+                    //PUT DAT MOFO TO SLEEP
+                }
+                else if (!paused)
+                {
+                    //WAKE EM UP!
+                }
+            }
+            
         }
 
         public void CreateBar()
@@ -153,6 +171,11 @@ namespace Lab6
             }
             
             
+        }
+
+        private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
+        {
+            Slider_TimeModifyer.IsEnabled ^= true;
         }
     }
 }

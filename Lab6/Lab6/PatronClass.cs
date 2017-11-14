@@ -14,6 +14,7 @@ namespace Lab6
         public ushort ThisPatronID;
         public BeerJugClass Jug = new BeerJugClass(0);
         private int chairID;
+        private bool wannaGoHome = false;
 
         public PatronClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
         {
@@ -23,21 +24,28 @@ namespace Lab6
 
         public void PatronController()
         {
-            while (Jug.IsEmpty == true)
+            while (!wannaGoHome)
             {
                 Thread.Sleep(sek);
-            }
-            
-            while (Jug.IsEmpty == false)
-            {
-                Thread.Sleep(3 * sek);
-                //Look for free chair
-                while (!LookForChair())
+                if (chairQueue.Count > 0)
                 {
-                    Thread.Sleep(sek);
+                    if (ThisPatronID == chairQueue.First().ThisPatronID)
+                    {
+                        Jug = chairQueue.Take().Jug;
+                        Thread.Sleep(3 * sek);
+
+                        //Look for free chair
+                        while (!LookForChair())
+                        {
+                            Thread.Sleep(sek);
+                        }
+                        Drink();
+                        ChairClass.ChairList.ElementAt(chairID).PatronAtChair = false;
+                        wannaGoHome = true;
+                        AddToListBox(ElapsedTime, $"{AgentName} [{ThisPatronID}]", 5);
+                    }
                 }
-                Thread.Sleep(rnd.Next(10, 20) * sek);
-                Drink();
+                
             }
         }
         
@@ -48,10 +56,6 @@ namespace Lab6
             Jug.IsEmpty = true;
             Jug.IsClean = false;
             ChairClass.ChairList.ElementAt(chairID).JugAtChair = Jug;
-            // Jug.isFull = false;
-            //Jug.IsClean = false;
-            //Chair.GlassList.Add(Jug);
-            // NumberOfPatrons--;
         }
 
         public bool LookForChair()

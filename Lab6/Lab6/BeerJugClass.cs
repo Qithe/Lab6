@@ -8,9 +8,9 @@ namespace Lab6
 {
     class BeerJugClass
     {
-        public bool IsClean { get; set; }
-        public bool IsEmpty { get; set; }
-        private ushort Id { get; set; }
+        public bool IsClean { get; set; } = true;
+        public bool IsEmpty { get; set; } = true;
+        public ushort Id { get; set; }
         public BeerJugClass(ushort id)
         {
             Id = id;

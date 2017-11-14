@@ -10,6 +10,7 @@ namespace Lab6
     class ShelfClass : ItemContainerClass
     {
         public static BlockingCollection<BeerJugClass> ShelfList = new BlockingCollection<BeerJugClass>();
+        public static int ShelfSize = 10;
 
         public ShelfClass(ushort id=0) : base(id)
         {
@@ -18,7 +19,7 @@ namespace Lab6
 
         public void GenerateShelf()
         {
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < ShelfSize; i++)
             {
                 ShelfList.Add(new BeerJugClass((ushort)i));
             }

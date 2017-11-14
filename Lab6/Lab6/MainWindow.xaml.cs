@@ -106,7 +106,14 @@ namespace Lab6
             }
             else if(witchList == 3) //Washing Glass
             {
-
+                if(ListBox_ServicePersonel.Items.Count == 0)
+                {
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Add($"{time}. The waitress washed jug nr {element}"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{time}. The waitress washed jug nr {element}"));
+                }
             }
             else if(witchList == 4) //Close the bar
             {

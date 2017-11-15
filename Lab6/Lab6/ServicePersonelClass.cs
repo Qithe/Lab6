@@ -20,7 +20,7 @@ namespace Lab6
         }
         public void ServicePersonelController()
         {
-            while (BouncerClass.bouncerTime < 120 || ShelfClass.ShelfList.Count != ShelfClass.ShelfSize)
+            while (BouncerClass.bouncerTime < OpenTime + 20 || ShelfClass.ShelfList.Count != ShelfClass.ShelfSize)
             {
                 if (ShelfClass.ShelfList.Count < ShelfClass.ShelfSize)
                 {

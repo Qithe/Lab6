@@ -72,7 +72,7 @@
                         </Grid>
                         <GroupBox x:Name="GroupBox_Senarios" Header="Senarios" Height="105" Margin="0,100,0,0" VerticalAlignment="Top">
                             <Grid Margin="0,0,-2.8,-4.4">
-                                <ComboBox x:Name="ComboBox_SenarioSelection" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0">
+                                <ComboBox x:Name="ComboBox_SenarioSelection" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectionChanged="ComboBox_ScenarioSelection_SelectionChanged">
                                     <ComboBoxItem Content="No Senario"/>
                                     <ComboBoxItem Content="Senario 1"/>
                                     <ComboBoxItem Content="Senario 2"/>

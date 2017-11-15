@@ -12,6 +12,7 @@ namespace Lab6
         public static BlockingCollection<ChairClass> ChairList = new BlockingCollection<ChairClass>();
         public BeerJugClass JugAtChair = new BeerJugClass(0);
         public bool PatronAtChair = false;
+        public static int NumbOfChairs = 10;
 
         public ChairClass(ushort id = 0) : base(id)
         {
@@ -20,7 +21,7 @@ namespace Lab6
 
         public void GenerateChairs()
         {
-            for(int i = 0; i < 15; i++)
+            for(int i = 0; i < NumbOfChairs; i++)
             {
                 ChairList.Add(new ChairClass((ushort)i));
             }

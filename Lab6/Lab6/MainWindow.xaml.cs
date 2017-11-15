@@ -34,6 +34,7 @@ namespace Lab6
         ChairClass chairs = new ChairClass();
         Random rnd = new Random();
         public Stopwatch Time = new Stopwatch();
+        int scenario;
         AgentPauser agentPauser = new AgentPauser(AgentStateChanger);
 
         bool haveLodedUi = false;
@@ -77,6 +78,40 @@ namespace Lab6
         }
         public void StartSimulation()
         {
+            if (scenario == 1)
+            {
+
+            }
+            else if(scenario == 2)
+            {
+                ShelfClass.ShelfSize = 20;
+                ChairClass.NumbOfChairs = 3;
+            }
+            else if(scenario == 3)
+            {
+                ShelfClass.ShelfSize = 5;
+                ChairClass.NumbOfChairs = 20;
+            }
+            else if(scenario == 4)
+            {
+                
+            }
+            else if(scenario == 5)
+            {
+
+            }
+            else if(scenario == 6)
+            {
+                AgentClass.OpenTime = 300;
+            }
+            else if(scenario == 7)
+            {
+                BouncerClass.couplesNight = true;
+            }
+            else if(scenario == 8)
+            {
+
+            }
             CreateBar();
             Time.Start();
             BouncerClass bouncer = new BouncerClass(Adding);
@@ -175,6 +210,11 @@ namespace Lab6
             }
             
             
+        }
+
+        private void ComboBox_ScenarioSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            scenario = ComboBox_SenarioSelection.SelectedIndex;
         }
     }
 }

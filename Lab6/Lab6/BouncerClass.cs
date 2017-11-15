@@ -14,6 +14,7 @@ namespace Lab6
         private static ushort BouncerID = 0;
         public ushort ThisBouncerID;
         public static int bouncerTime = 0;
+        public static bool couplesNight = false;
 
         public BouncerClass(Action<string, int> AddToListBox) : base(AddToListBox)
         {
@@ -36,7 +37,6 @@ namespace Lab6
         {
             outsideQueue.Add(new PatronClass(AddToListBox));
             Task.Run(() => outsideQueue.Last().PatronController());
-            //outsideQueue.Enqueue(new PatronClass(AddToListBox));
             int delay = rnd.Next(1, 6);
             AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
             bouncerTime += delay;
@@ -50,9 +50,10 @@ namespace Lab6
             {
                 Arrive();
             }
-            while(bouncerTime < 100)
+            while(bouncerTime < OpenTime)
             {
                 Arrive();
+                if (couplesNight) { Arrive(); LetInPatrons(); }
                 LetInPatrons();
             }
             AddToListBox($"Bouncer [{ThisBouncerID}]", 4);

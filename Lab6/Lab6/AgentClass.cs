@@ -13,14 +13,13 @@ namespace Lab6
     {
         public string AgentName { get; set; }
         public const int sek = 1000;
+        public static int OpenTime = 100;
         
         public Action<string, int> AddToListBox;
         public static BlockingCollection<PatronClass> outsideQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> barQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> chairQueue = new BlockingCollection<PatronClass>();
         public Queue<string> nameList = new Queue<string>();
-        //public ConcurrentQueue<PatronClass> outsideQueue = new ConcurrentQueue<PatronClass>();
-        //public ConcurrentQueue<PatronClass> barQueue = new ConcurrentQueue<PatronClass>();
         public Random rnd = new Random();
         
 

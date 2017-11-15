@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace Lab6
 {
@@ -32,6 +33,7 @@ namespace Lab6
         ShelfClass shelf = new ShelfClass();
         ChairClass chairs = new ChairClass();
         Random rnd = new Random();
+        public Stopwatch Time = new Stopwatch();
         AgentPauser agentPauser = new AgentPauser(AgentStateChanger);
 
         bool haveLodedUi = false;
@@ -76,6 +78,7 @@ namespace Lab6
         public void StartSimulation()
         {
             CreateBar();
+            Time.Start();
             BouncerClass bouncer = new BouncerClass(Adding);
             BartenderClass bartender = new BartenderClass(Adding);
             ServicePersonelClass waitress = new ServicePersonelClass(Adding);
@@ -87,74 +90,75 @@ namespace Lab6
 
         private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
         {
+            Slider_TimeModifyer.IsEnabled ^= true;
             StartSimulation();
         }
 
         
 
-        public void Adding(int time, string element, int witchList)
+        public void Adding(string element, int witchList)
         {
+            int now = (int)Time.Elapsed.TotalSeconds;
             if(witchList == 0) //OutsideQueue
             {
                 if(ListBox_Patrons.Items.Count == 0)
                 {
-                    Dispatcher.Invoke(() => ListBox_Patrons.Items.Add($"{time}. {element} arrived outside the bar"));
+                    Dispatcher.Invoke(() => ListBox_Patrons.Items.Add($"{now}. {element} arrived outside the bar"));
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} arrived outside the bar"));
+                    Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} arrived outside the bar"));
                 } 
             }
             else if (witchList == 1) //BarQueue
             {
                 if(ListBox_Bouncers.Items.Count == 0)
                 {
-                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Add($"{time}. Bouncer let in {element}"));
+                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Add($"{now}. Bouncer let in {element}"));
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{time}. Bouncer let in {element}"));
+                    Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{now}. Bouncer let in {element}"));
                 }
                 
-                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} went into the bar"));
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} went into the bar"));
             }
             else if (witchList == 2) //Drinking
             {
-                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} sat down to drink"));
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} sat down to drink"));
             }
             else if(witchList == 3) //Washing Glass
             {
                 if(ListBox_ServicePersonel.Items.Count == 0)
                 {
-                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Add($"{time}. The waitress washed jug nr {element}"));
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Add($"{now}. The waitress washed jug nr {element}"));
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{time}. The waitress washed jug nr {element}"));
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{now}. The waitress washed jug nr {element}"));
                 }
             }
             else if(witchList == 4) //Close the bar
             {
-                Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{time}. {element} closed the bar"));
+                Dispatcher.Invoke(() => ListBox_Bouncers.Items.Insert(0, $"{now}. {element} closed the bar"));
             }
             else if(witchList == 5) //Go home
             {
-                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} went home"));
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} went home"));
             }
             else if(witchList == 6) //Serve Drink
             {
                 if(ListBox_Bartender.Items.Count == 0)
                 {
-                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Add($"{time}. Bartender served {element} a beer"));
+                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Add($"{now}. Bartender served {element} a beer"));
                 }
                 else
                 {
-                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Insert(0, $"{time}. bartender served {element} a beer"));
+                    Dispatcher.Invoke(() => ListBox_Bartender.Items.Insert(0, $"{now}. bartender served {element} a beer"));
                 }
-                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{time}. {element} got a beer"));
+                Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} got a beer"));
                 
             }
-            //Action startSP = ServicePersonelController;
         }
 
         private void Button_RestartDay_Click(object sender, RoutedEventArgs e)
@@ -171,11 +175,6 @@ namespace Lab6
             }
             
             
-        }
-
-        private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
-        {
-            Slider_TimeModifyer.IsEnabled ^= true;
         }
     }
 }

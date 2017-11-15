@@ -13,8 +13,9 @@ namespace Lab6
         
         private static ushort BouncerID = 0;
         public ushort ThisBouncerID;
+        public static int bouncerTime = 0;
 
-        public BouncerClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
+        public BouncerClass(Action<string, int> AddToListBox) : base(AddToListBox)
         {
             BouncerID++;
             ThisBouncerID = BouncerID;
@@ -26,8 +27,8 @@ namespace Lab6
             //PatronClass P = outsideQueue.ElementAt(0);
             //outsideQueue.TryDequeue(out P);
             barQueue.Add(outsideQueue.Take());
-            AddToListBox(ElapsedTime, $"{barQueue.Last().AgentName} [{barQueue.Last().ThisPatronID}]", 1);
-            ElapsedTime += 3;
+            AddToListBox($"{barQueue.Last().AgentName} [{barQueue.Last().ThisPatronID}]", 1);
+            bouncerTime += 3;
             Thread.Sleep(3 * sek);
         }
 
@@ -37,28 +38,29 @@ namespace Lab6
             Task.Run(() => outsideQueue.Last().PatronController());
             //outsideQueue.Enqueue(new PatronClass(AddToListBox));
             int delay = rnd.Next(1, 6);
-            AddToListBox(ElapsedTime, $"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
-            ElapsedTime += delay;
+            AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+            bouncerTime += delay;
             Thread.Sleep(delay * sek);
         }
 
         public void BouncerControler()
         {
+            
             for (int i = 0; i < 5; i++)
             {
                 Arrive();
             }
-            while(ElapsedTime < 100)
+            while(bouncerTime < 100)
             {
                 Arrive();
                 LetInPatrons();
             }
-            AddToListBox(ElapsedTime, $"Bouncer [{ThisBouncerID}]", 4);
+            AddToListBox($"Bouncer [{ThisBouncerID}]", 4);
             while(outsideQueue.Count > 0)
             {
-                AddToListBox(ElapsedTime, $"{outsideQueue.First().AgentName} [{outsideQueue.Take().ThisPatronID}]", 5);
+                AddToListBox($"{outsideQueue.First().AgentName} [{outsideQueue.Take().ThisPatronID}]", 5);
+                bouncerTime++;
                 Thread.Sleep(sek);
-                ElapsedTime++;
             }
         }
     }

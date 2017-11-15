@@ -16,7 +16,7 @@ namespace Lab6
         private int chairID;
         private bool wannaGoHome = false;
 
-        public PatronClass(Action<int, string, int> AddToListBox) : base(AddToListBox)
+        public PatronClass(Action<string, int> AddToListBox) : base(AddToListBox)
         {
             PatronID++;
             ThisPatronID = PatronID;
@@ -42,7 +42,7 @@ namespace Lab6
                         Drink();
                         ChairClass.ChairList.ElementAt(chairID).PatronAtChair = false;
                         wannaGoHome = true;
-                        AddToListBox(ElapsedTime, $"{AgentName} [{ThisPatronID}]", 5);
+                        AddToListBox($"{AgentName} [{ThisPatronID}]", 5);
                     }
                 }
                 
@@ -51,7 +51,7 @@ namespace Lab6
         
         public void Drink()
         {
-            AddToListBox(ElapsedTime, $"{AgentName} [{ThisPatronID}]", 2);
+            AddToListBox($"{AgentName} [{ThisPatronID}]", 2);
             Thread.Sleep(rnd.Next(10, 20)*sek);
             Jug.IsEmpty = true;
             Jug.IsClean = false;

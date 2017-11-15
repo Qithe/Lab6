@@ -6,14 +6,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
+
 namespace Lab6
 {
     public class AgentClass : ItemContainerClass
     {
         public string AgentName { get; set; }
         public const int sek = 1000;
-        public static int ElapsedTime { get; set; }
-        public Action<int, string, int> AddToListBox;
+        
+        public Action<string, int> AddToListBox;
         public static BlockingCollection<PatronClass> outsideQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> barQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> chairQueue = new BlockingCollection<PatronClass>();
@@ -23,7 +24,7 @@ namespace Lab6
         public Random rnd = new Random();
         
 
-        public AgentClass(Action<int, string, int> AddToListBox)
+        public AgentClass(Action<string, int> AddToListBox)
         {
             AgentName = GetRandomName();
             this.AddToListBox = AddToListBox;

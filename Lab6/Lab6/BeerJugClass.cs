@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab6
 {
-    class BeerJugClass
+    public class BeerJugClass
     {
         public bool IsClean { get; set; } = true;
         public bool IsEmpty { get; set; } = true;

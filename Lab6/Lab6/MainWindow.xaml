@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab6"
         mc:Ignorable="d"
-        Title="The Wailing Vagabond - Simulator" Height="768" Width="1298" ResizeMode="NoResize">
+        Title="The Wailing Vagabond - Simulator" Height="768" Width="1298">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1273.6"/>

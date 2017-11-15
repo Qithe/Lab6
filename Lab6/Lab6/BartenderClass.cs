@@ -24,7 +24,16 @@ namespace Lab6
             {
                 Thread.Sleep(sek);
             }
-            while(BouncerClass.bouncerTime < OpenTime || barQueue.Count > 0)
+            while(BouncerClass.bouncerTime < OpenTime)
+            {
+                if (barQueue.Count > 0)
+                {
+                    GetBeerJug();
+                    PourDrink();
+                    ServeDrink();
+                }
+            }
+            while(barQueue.Count > 0)
             {
                 GetBeerJug();
                 PourDrink();

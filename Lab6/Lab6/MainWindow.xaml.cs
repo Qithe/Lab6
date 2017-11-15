@@ -65,17 +65,12 @@ namespace Lab6
 
         public void CreateBar()
         {
-            //Creates all employees and put em in to employe list
-            //employeeList.Enqueue(new ServicePersonelClass(Adding));
-            //employeeList.Enqueue(new BartenderClass((ushort)1));
-            //employeeList.Enqueue(new BouncerClass((ushort)1));
             //Creates all chairs and put em it to chairlist
             chairs.GenerateChairs();
-
             //Creates all em jugs
             shelf.GenerateShelf();
-            
         }
+
         public void StartSimulation()
         {
             if (scenario == 1)
@@ -164,14 +159,7 @@ namespace Lab6
             }
             else if(witchList == 3) //Washing Glass
             {
-                if(ListBox_ServicePersonel.Items.Count == 0)
-                {
-                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Add($"{now}. The waitress washed jug nr {element}"));
-                }
-                else
-                {
-                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{now}. The waitress washed jug nr {element}"));
-                }
+                Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{now}. The waitress washed jug nr {element}"));
             }
             else if(witchList == 4) //Close the bar
             {
@@ -194,6 +182,17 @@ namespace Lab6
                 Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} got a beer"));
                 
             }
+            else if(witchList == 7)
+            {
+                if(ListBox_ServicePersonel.Items.Count == 0)
+                {
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Add($"{now}. The waitress picked up {element} jugs"));
+                }
+                else
+                {
+                    Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{now}. The waitress picked up {element} jugs"));
+                }
+            }
         }
 
         private void Button_RestartDay_Click(object sender, RoutedEventArgs e)
@@ -205,7 +204,8 @@ namespace Lab6
         {
             if (haveLodedUi != false)
             {
-                double modifier = Slider_TimeModifyer.Value;
+                int modifier = (int)Slider_TimeModifyer.Value;
+                AgentClass.sek = 1000 / modifier;
                 Lable_TimeModifyer.Content = modifier + ".0x";
             }
             

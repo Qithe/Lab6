@@ -12,7 +12,7 @@ namespace Lab6
     public class AgentClass : ItemContainerClass
     {
         public string AgentName { get; set; }
-        public const int sek = 1000;
+        public static int sek = 1000;
         public static int OpenTime = 100;
         
         public Action<string, int> AddToListBox;

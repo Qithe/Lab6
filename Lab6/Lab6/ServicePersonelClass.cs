@@ -47,6 +47,7 @@ namespace Lab6
                 }
                 Thread.Sleep(sek);
             }
+            AddToListBox($"{WashList.Count}", 7);
             Thread.Sleep(3* sek);
         }
 

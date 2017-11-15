@@ -45,7 +45,6 @@ namespace Lab6
                         AddToListBox($"{AgentName} [{ThisPatronID}]", 5);
                     }
                 }
-                
             }
         }
         

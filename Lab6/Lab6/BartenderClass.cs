@@ -12,7 +12,7 @@ namespace Lab6
         private static ushort BartenderID = 0;
         public ushort ThisBartenderID;
         BeerJugClass BartenderJug = new BeerJugClass(0);
-        public BartenderClass(Action<string, int> AddToListBox) : base(AddToListBox)
+        public BartenderClass(Action<string, int> AddToListBox, Action<int, int> UpdateQueueValues) : base(AddToListBox, UpdateQueueValues)
         {
             BartenderID++;
             ThisBartenderID = BartenderID;
@@ -39,6 +39,7 @@ namespace Lab6
                 PourDrink();
                 ServeDrink();
             }
+            AddToListBox("Bartender", 8);
         }
 
         public void GetBeerJug()
@@ -62,6 +63,8 @@ namespace Lab6
             AddToListBox($"{barQueue.First().AgentName} [{barQueue.First().ThisPatronID}]", 6);
             barQueue.First().Jug = BartenderJug;
             chairQueue.Add(barQueue.Take());
+            UpdateQueueValues(barQueue.Count, 3);
+            UpdateQueueValues(chairQueue.Count, 4);
             Thread.Sleep(sek);
         }
     }

@@ -51,29 +51,28 @@
                         <Label x:Name="Label_AllPatrionsInBar" Content="Total amount of Patrons in bar: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="191" Margin="0,1,0,0"/>
                         <Label x:Name="Label_PatronsInBarQueue" Content="Patrons waiting for a beer: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,53,0,0" Width="191"/>
                         <Label x:Name="Label_PatronsInEntrenceQueue" Content="Patrons in entrance queue: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,27,0,0" Width="191"/>
-                        <Label x:Name="Label_PatronsInChairQueue" Content="Patrons waiting for a free chair: 99" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,79,0,0" Width="191"/>
+                        <Label x:Name="Label_PatronsInChairQueue" Content="Patrons waiting for a free chair: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,79,0,0" Width="191"/>
                         <Label x:Name="Lable_ServedPatrions" Content="Served patrons: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,105,0,0" Width="191"/>
                     </Grid>
                 </GroupBox>
 
                 <GroupBox x:Name="GroupBox_ManualSenarioSettings" Header="Manual &amp; Senario settings" HorizontalAlignment="Left" Height="224" Margin="201,0,0,0" VerticalAlignment="Top" Width="220">
                     <Grid x:Name="Grid_SettingsSenariosSettings" Margin="0,0,-3,-3.4">
-                        <Grid x:Name="Grid_ChairsInBar" HorizontalAlignment="Left" Height="25" Margin="-1,0,0,0" VerticalAlignment="Top" Width="105">
+                        <Grid x:Name="Grid_ChairsInBar" HorizontalAlignment="Left" Height="25" Margin="-1,0,0,0" VerticalAlignment="Top" Width="105" IsEnabled="False">
                             <Label x:Name="Label_ChairsInBar" Content="Chairs in bar:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" Height="25"/>
-                            <TextBox x:Name="TextBox_ChairsInBar" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" MaxLength="3"/>
+                            <TextBox x:Name="TextBox_ChairsInBar" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="9" VerticalAlignment="Top" Width="26" MaxLength="3"/>
                         </Grid>
-                        <Grid x:Name="Grid_JugsInBar" HorizontalAlignment="Left" Height="25" Margin="-1,25,0,0" VerticalAlignment="Top" Width="105">
+                        <Grid x:Name="Grid_JugsInBar" HorizontalAlignment="Left" Height="25" Margin="-1,25,0,0" VerticalAlignment="Top" Width="105" IsEnabled="False">
                             <Label x:Name="Label_JugsInBar" Content="Jugs in bar:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" Height="25"/>
-                            <TextBox x:Name="TextBox_JugsInBar" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" MaxLength="3"/>
+                            <TextBox x:Name="TextBox_JugsInBar" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="26" MaxLength="3"/>
                         </Grid>
-                        <Grid x:Name="Grid_TimeBarIsOpen" HorizontalAlignment="Left" Height="25" Margin="-1,50,0,0" VerticalAlignment="Top" Width="105">
+                        <Grid x:Name="Grid_TimeBarIsOpen" HorizontalAlignment="Left" Height="25" Margin="-1,50,0,0" VerticalAlignment="Top" Width="105" IsEnabled="False">
                             <Label x:Name="Label_TimeBarIsOpen" Content="Time open:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" Height="25"/>
-                            <TextBox x:Name="TextBox_TimeBarIsOpen" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="999" VerticalAlignment="Top" Width="26" MaxLength="3"/>
+                            <TextBox x:Name="TextBox_TimeBarIsOpen" HorizontalAlignment="Left" Height="25" Margin="79,0,0,0" TextWrapping="Wrap" Text="120" VerticalAlignment="Top" Width="26" MaxLength="3"/>
                         </Grid>
                         <GroupBox x:Name="GroupBox_Senarios" Header="Senarios" Height="105" Margin="0,100,0,0" VerticalAlignment="Top">
                             <Grid Margin="0,0,-2.8,-4.4">
                                 <ComboBox x:Name="ComboBox_SenarioSelection" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectionChanged="ComboBox_ScenarioSelection_SelectionChanged">
-                                    <ComboBoxItem Content="No Senario"/>
                                     <ComboBoxItem Content="Senario 1"/>
                                     <ComboBoxItem Content="Senario 2"/>
                                     <ComboBoxItem Content="Senario 3"/>
@@ -83,7 +82,7 @@
                                     <ComboBoxItem Content="Senario 7"/>
                                     <ComboBoxItem Content="Senario 8"/>
                                 </ComboBox>
-                                <TextBox x:Name="Textbox_SenarioDescription" Margin="0,22,0.4,0.4" TextWrapping="Wrap" Text="This is where the information about the senario will be displayed" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
+                                <TextBox x:Name="Textbox_SenarioDescription" Margin="0,22,0.4,0.4" TextWrapping="Wrap" Text="Standardvärden på allt" AllowDrop="False" Focusable="False" IsHitTestVisible="False" IsTabStop="False"/>
                             </Grid>
                         </GroupBox>
                     </Grid>

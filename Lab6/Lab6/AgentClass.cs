@@ -16,6 +16,7 @@ namespace Lab6
         public static int OpenTime = 100;
         
         public Action<string, int> AddToListBox;
+        public Action<int, int> UpdateQueueValues;
         public static BlockingCollection<PatronClass> outsideQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> barQueue = new BlockingCollection<PatronClass>();
         public static BlockingCollection<PatronClass> chairQueue = new BlockingCollection<PatronClass>();
@@ -23,10 +24,11 @@ namespace Lab6
         public Random rnd = new Random();
         
 
-        public AgentClass(Action<string, int> AddToListBox)
+        public AgentClass(Action<string, int> AddToListBox, Action<int, int>UpdateQueueValues)
         {
             AgentName = GetRandomName();
             this.AddToListBox = AddToListBox;
+            this.UpdateQueueValues = UpdateQueueValues;
         }
 
         public void GenerateNameList()

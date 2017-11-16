@@ -15,8 +15,9 @@ namespace Lab6
         public BeerJugClass Jug = new BeerJugClass(0);
         private int chairID;
         private bool wannaGoHome = false;
+        public static int PatronSpeed = 1;
 
-        public PatronClass(Action<string, int> AddToListBox) : base(AddToListBox)
+        public PatronClass(Action<string, int> AddToListBox, Action<int, int> UpdateQueueValues) : base(AddToListBox, UpdateQueueValues)
         {
             PatronID++;
             ThisPatronID = PatronID;
@@ -32,7 +33,7 @@ namespace Lab6
                     if (ThisPatronID == chairQueue.First().ThisPatronID)
                     {
                         Jug = chairQueue.Take().Jug;
-                        Thread.Sleep(3 * sek);
+                        Thread.Sleep(PatronSpeed * 3 * sek);
 
                         //Look for free chair
                         while (!LookForChair())
@@ -43,6 +44,7 @@ namespace Lab6
                         ChairClass.ChairList.ElementAt(chairID).PatronAtChair = false;
                         wannaGoHome = true;
                         AddToListBox($"{AgentName} [{ThisPatronID}]", 5);
+                        UpdateQueueValues(barQueue.Count + chairQueue.Count + ChairClass.OccupiedChairs(), 1);
                     }
                 }
             }
@@ -51,7 +53,7 @@ namespace Lab6
         public void Drink()
         {
             AddToListBox($"{AgentName} [{ThisPatronID}]", 2);
-            Thread.Sleep(rnd.Next(10, 20)*sek);
+            Thread.Sleep(rnd.Next(10, 20) * PatronSpeed * sek);
             Jug.IsEmpty = true;
             Jug.IsClean = false;
             ChairClass.ChairList.ElementAt(chairID).JugAtChair = Jug;

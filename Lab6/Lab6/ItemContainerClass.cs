@@ -13,7 +13,7 @@ namespace Lab6
         //public BlockingCollection<ItemsClass> ItemList = new BlockingCollection<ItemsClass>();
         public ItemContainerClass(ushort id = 0)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 }

@@ -22,82 +22,55 @@ namespace Lab6
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-
-    public delegate void AgentPauser(List<AgentClass> agentList, bool paused);
     
 
     public partial class MainWindow : Window
     {
-        ConcurrentQueue<ChairClass> chairList = new ConcurrentQueue<ChairClass>();
-        ConcurrentQueue<AgentClass> employeeList = new ConcurrentQueue<AgentClass>();
-        ShelfClass shelf = new ShelfClass();
-        ChairClass chairs = new ChairClass();
         Random rnd = new Random();
-        public Stopwatch Time = new Stopwatch();
+        Stopwatch Time = new Stopwatch();
         int scenario;
-        AgentPauser agentPauser = new AgentPauser(AgentStateChanger);
-
         bool haveLodedUi = false;
 
         public MainWindow()
         {
             InitializeComponent();
             haveLodedUi = true;
-
-
-        }
-
-        public static void AgentStateChanger(List<AgentClass> agentList, bool paused)
-        {
-            foreach (AgentClass A in agentList)
-            {
-                if (paused)
-                {
-                    //PUT DAT MOFO TO SLEEP
-                }
-                else if (!paused)
-                {
-                    //WAKE EM UP!
-                }
-            }
-            
         }
 
         public void CreateBar()
         {
             //Creates all chairs and put em it to chairlist
-            chairs.GenerateChairs();
+            ChairClass.GenerateChairs();
             //Creates all em jugs
-            shelf.GenerateShelf();
+            ShelfClass.GenerateShelf();
         }
 
         public void StartSimulation()
         {
-            if (scenario == 1)
-            {
-
-            }
-            else if(scenario == 2)
+            if(scenario == 2)
             {
                 ShelfClass.ShelfSize = 20;
                 ChairClass.NumbOfChairs = 3;
+                TextBox_ChairsInBar.Text = $"{ChairClass.NumbOfChairs}";
             }
             else if(scenario == 3)
             {
                 ShelfClass.ShelfSize = 5;
                 ChairClass.NumbOfChairs = 20;
+                TextBox_ChairsInBar.Text = $"{ChairClass.NumbOfChairs}";
             }
             else if(scenario == 4)
             {
-                
+                PatronClass.PatronSpeed = 2;
             }
             else if(scenario == 5)
             {
-
+                ServicePersonelClass.ServiceSpeed = 2;
             }
             else if(scenario == 6)
             {
                 AgentClass.OpenTime = 300;
+                TextBox_TimeBarIsOpen.Text = $"{AgentClass.OpenTime}";
             }
             else if(scenario == 7)
             {
@@ -105,17 +78,19 @@ namespace Lab6
             }
             else if(scenario == 8)
             {
-
+                BouncerClass.groupNight = true;
+                BouncerClass.BouncerSpeed = 2;
             }
             CreateBar();
             Time.Start();
-            BouncerClass bouncer = new BouncerClass(Adding);
-            BartenderClass bartender = new BartenderClass(Adding);
-            ServicePersonelClass waitress = new ServicePersonelClass(Adding);
+            BouncerClass bouncer = new BouncerClass(Adding, ChangeQueue);
+            BartenderClass bartender = new BartenderClass(Adding, ChangeQueue);
+            ServicePersonelClass waitress = new ServicePersonelClass(Adding, ChangeQueue);
 
             Task.Run(() => bouncer.BouncerControler());
             Task.Run(() => bartender.BartenderController());
             Task.Run(() => waitress.ServicePersonelController());
+
         }
 
         private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
@@ -182,7 +157,7 @@ namespace Lab6
                 Dispatcher.Invoke(() => ListBox_Patrons.Items.Insert(0, $"{now}. {element} got a beer"));
                 
             }
-            else if(witchList == 7)
+            else if(witchList == 7) //Pick up jugs
             {
                 if(ListBox_ServicePersonel.Items.Count == 0)
                 {
@@ -193,28 +168,79 @@ namespace Lab6
                     Dispatcher.Invoke(() => ListBox_ServicePersonel.Items.Insert(0, $"{now}. The waitress picked up {element} jugs"));
                 }
             }
-        }
-
-        private void Button_RestartDay_Click(object sender, RoutedEventArgs e)
-        {
-            
+            else if(witchList == 8) //Bartender go home
+            {
+                Dispatcher.Invoke(() => ListBox_Bartender.Items.Insert(0, $"{now}. The {element} went home"));
+            }
         }
 
         private void Slider_TimeModifyer_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (haveLodedUi != false)
+            if (haveLodedUi)
             {
                 int modifier = (int)Slider_TimeModifyer.Value;
                 AgentClass.sek = 1000 / modifier;
                 Lable_TimeModifyer.Content = modifier + ".0x";
             }
-            
-            
         }
 
         private void ComboBox_ScenarioSelection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             scenario = ComboBox_SenarioSelection.SelectedIndex;
+            if (haveLodedUi)
+            {
+                switch (scenario)
+                {
+                    case (0):
+                        Textbox_SenarioDescription.Text = "Standardvärden på allt";
+                        break;
+                    case (1):
+                        Textbox_SenarioDescription.Text = "Det finns 20 glas, men bara 3 stolar";
+                        break;
+                    case (2):
+                        Textbox_SenarioDescription.Text = "Det finns 20 stolar, men bara 5 glas";
+                        break;
+                    case (3):
+                        Textbox_SenarioDescription.Text = "Gästerna stannar dubbelt så länge";
+                        break;
+                    case (4):
+                        Textbox_SenarioDescription.Text = "Servitrisen plockar glas och diskar dubbelt så fort";
+                        break;
+                    case (5):
+                        Textbox_SenarioDescription.Text = "Baren är öppen i 5 minuter (5*60 = 300 sekunder)";
+                        break;
+                    case (6):
+                        Textbox_SenarioDescription.Text = "Couples night - inkastaren släpper in två gäster varje gång i stället för en";
+                        break;
+                    case (7):
+                        Textbox_SenarioDescription.Text = "Det tar dubbelt så lång tid mellan det att inkastaren släpper in gäster, men efter de första 20 sekunderna släpper hen in en busslast på 15 gäster på samma gång som en engångshändelse";
+                        break;
+                }
+            }
+        }
+
+        public void ChangeQueue(int queueSize, int wichLabel)
+        {
+            if(wichLabel == 1)
+            {
+                Dispatcher.Invoke(() => Label_AllPatrionsInBar.Content = $"Total amount of Patrons in bar: {queueSize}");
+            }
+            else if(wichLabel == 2)
+            {
+                Dispatcher.Invoke(() => Label_PatronsInEntrenceQueue.Content = $"Patrons in entrance queue: {queueSize}");
+            }
+            else if(wichLabel == 3)
+            {
+                Dispatcher.Invoke(() => Label_PatronsInBarQueue.Content = $"Patrons waiting for a beer: {queueSize}");
+            }
+            else if(wichLabel == 4)
+            {
+                Dispatcher.Invoke(() => Label_PatronsInChairQueue.Content = $"Patrons waiting for a free chair: {queueSize}");
+            }
+            else if(wichLabel == 5)
+            {
+                Dispatcher.Invoke(() => Lable_ServedPatrions.Content = $"Served patrons: {queueSize}");
+            }
         }
     }
 }

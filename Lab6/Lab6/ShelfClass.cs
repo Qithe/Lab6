@@ -17,7 +17,7 @@ namespace Lab6
 
         }
 
-        public void GenerateShelf()
+        public static void GenerateShelf()
         {
             for(int i = 0; i < ShelfSize; i++)
             {

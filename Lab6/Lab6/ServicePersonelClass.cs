@@ -12,8 +12,9 @@ namespace Lab6
     {
         private static ushort ServiceID = 0;
         public ushort ThisServiceID;
+        public static int ServiceSpeed = 1;
         BlockingCollection<BeerJugClass> WashList = new BlockingCollection<BeerJugClass>();
-        public ServicePersonelClass(Action<string, int> AddToListBox) : base(AddToListBox)
+        public ServicePersonelClass(Action<string, int> AddToListBox, Action<int, int> UpdateQueueValues) : base(AddToListBox, UpdateQueueValues)
         {
             ServiceID++;
             ThisServiceID = ServiceID;
@@ -28,7 +29,7 @@ namespace Lab6
                     WashJugs();
                     PutJugsOnShelf();
                 }
-                Thread.Sleep(sek);
+                Thread.Sleep(sek / ServiceSpeed);
             }
         }
 
@@ -42,13 +43,13 @@ namespace Lab6
                     {
                         WashList.Add(ChairClass.ChairList.ElementAt(i).JugAtChair);
                         ChairClass.ChairList.ElementAt(i).JugAtChair.IsClean = true;
-                        Thread.Sleep(sek / 5);
+                        Thread.Sleep(sek / 5 / ServiceSpeed);
                     }
                 }
-                Thread.Sleep(sek);
+                Thread.Sleep(sek / ServiceSpeed);
             }
             AddToListBox($"{WashList.Count}", 7);
-            Thread.Sleep(3* sek);
+            Thread.Sleep(3* sek / ServiceSpeed);
         }
 
         public void WashJugs()
@@ -58,7 +59,7 @@ namespace Lab6
                 WashList.ElementAt(i).IsClean = true;
                 AddToListBox($"{WashList.ElementAt(i).Id}", 3);
             }
-            Thread.Sleep(15 * sek);
+            Thread.Sleep(15 * sek / ServiceSpeed);
         }
 
         public void PutJugsOnShelf()
@@ -72,7 +73,7 @@ namespace Lab6
             {
                 WashList.Take();
             }
-            Thread.Sleep(sek);
+            Thread.Sleep(sek / ServiceSpeed);
         }
     }
 }

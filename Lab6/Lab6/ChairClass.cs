@@ -19,7 +19,17 @@ namespace Lab6
 
         }
 
-        public void GenerateChairs()
+        public static int OccupiedChairs()
+        {
+            int busyChairs = 0;
+            for(int i = 0; i < NumbOfChairs; i++)
+            {
+                if (ChairList.ElementAt(i).PatronAtChair) { busyChairs++; }
+            }
+            return busyChairs;
+        }
+
+        public static void GenerateChairs()
         {
             for(int i = 0; i < NumbOfChairs; i++)
             {

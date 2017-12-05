@@ -27,6 +27,10 @@ namespace Lab6
 
         public void LetInPatrons()
         {
+            while(outsideQueue.Count == 0)
+            {
+                Thread.Sleep(100);
+            }
             barQueue.Add(outsideQueue.Take());
             servedPatrons++;
             AddToListBox($"{barQueue.Last().AgentName} [{barQueue.Last().ThisPatronID}]", 1);
@@ -39,7 +43,7 @@ namespace Lab6
             if(groupNight && bouncerTime > 20)
             {
                 groupNight = false;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 14; i++)
                 {
                     barQueue.Add(outsideQueue.Take());
                     servedPatrons++;
@@ -66,10 +70,9 @@ namespace Lab6
             }
             if (groupNight && bouncerTime > 20)
             {
-                for(int i = 0; i < 5; i++)
+                for(int i = 0; i < 14; i++)
                 {
                     Task.Run(() => StartPatron());
-                    
                 }
             }
             UpdateQueueValues(outsideQueue.Count, 2);
@@ -80,7 +83,7 @@ namespace Lab6
 
         public void BouncerControler()
         {
-            while(bouncerTime < OpenTime + 5)
+            while(bouncerTime < OpenTime)
             {
                 Arrive();
                 LetInPatrons();
@@ -99,9 +102,9 @@ namespace Lab6
         {
             PatronClass P = new PatronClass(AddToListBox, UpdateQueueValues);
             Task.Run(() => P.PatronController());
-            Thread.Sleep(20);
             outsideQueue.Add(P);
             AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+            Thread.Sleep(20);
         }
     }
     

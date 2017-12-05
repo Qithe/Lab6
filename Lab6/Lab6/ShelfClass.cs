@@ -10,7 +10,7 @@ namespace Lab6
     public class ShelfClass : ItemContainerClass
     {
         public static BlockingCollection<BeerJugClass> ShelfList = new BlockingCollection<BeerJugClass>();
-        public static int ShelfSize = 10;
+        public static int ShelfSize = 8;
 
         public ShelfClass(ushort id=0) : base(id)
         {

@@ -56,7 +56,6 @@
     </ApplicationDefinition>
     <Compile Include="BeerJugClass.cs" />
     <Compile Include="ItemContainerClass.cs" />
-    <Compile Include="ItemsClass.cs" />
     <Compile Include="ServicePersonelClass.cs" />
     <Compile Include="ChairClass.cs" />
     <Compile Include="ShelfClass.cs" />

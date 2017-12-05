@@ -13,38 +13,38 @@
         <GroupBox x:Name="GroupBox_Bartenders" Header="Bartenders" Margin="0,0,954.4,288.4" HorizontalAlignment="Center" Width="320">
             <Grid x:Name="Grid_Bartenders" Margin="0,0,-2.8,-12.6">
                 <ListBox x:Name="ListBox_Bartender" Margin="0,0,0,30" Grid.Column="0"/>
-                <CheckBox x:Name="Checkbox_PausBartender" Content="Pause all Bartenders" Margin="10,0,55,9" Height="16" VerticalAlignment="Bottom"/>
+                <CheckBox x:Name="Checkbox_PausBartender" Content="Pause all Bartenders" Margin="10,0,55,9" Height="16" VerticalAlignment="Bottom" IsEnabled="False"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="GroupBox_Bouncers" Header="Bouncers" Margin="320,0,634.4,288.4" HorizontalAlignment="Center" Width="320">
             <Grid x:Name="Grid_Bouncers" Margin="0,0,-2.8,-12.6">
                 <ListBox x:Name="ListBox_Bouncers" Margin="0,0,0,30"/>
-                <CheckBox x:Name="Checkbox_PausBouncers" Content="Pause all Bouncers" Margin="10,0,63,9" Height="16" VerticalAlignment="Bottom"/>
+                <CheckBox x:Name="Checkbox_PausBouncers" Content="Pause all Bouncers" Margin="10,0,63,9" Height="16" VerticalAlignment="Bottom" IsEnabled="False"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="GroupBox_ServicePersonel" Header="Service Personel" Margin="640,0,314.4,288.4" HorizontalAlignment="Center" Width="320">
             <Grid x:Name="Grid_ServicePersonel" Margin="0,0,-2.8,-12.6">
                 <ListBox x:Name="ListBox_ServicePersonel" Margin="0,0,0,30"/>
-                <CheckBox x:Name="Checkbox_PausServicePersonel" Content="Pause all Service Personel" Margin="10,0,26,9" Height="16" VerticalAlignment="Bottom"/>
+                <CheckBox x:Name="Checkbox_PausServicePersonel" Content="Pause all Service Personel" Margin="10,0,26,9" Height="16" VerticalAlignment="Bottom" IsEnabled="False"/>
             </Grid>
         </GroupBox>
         <GroupBox x:Name="GroupBox_Patrons" Header="Patrons" Margin="960,0,-5.6,41.4" HorizontalAlignment="Center" Width="320">
             <Grid x:Name="Grid_Patrons" Margin="0,0,-2.8,-12.6">
                 <ListBox x:Name="ListBox_Patrons" Margin="0,0,0,30"/>
-                <CheckBox x:Name="Checkbox_PausPatrons" Content="Pause all Patrons" Margin="10,0,71,9" Height="16" VerticalAlignment="Bottom"/>
+                <CheckBox x:Name="Checkbox_PausPatrons" Content="Pause all Patrons" Margin="10,0,71,9" Height="16" VerticalAlignment="Bottom" IsEnabled="False"/>
             </Grid>
         </GroupBox>
         <StatusBar Margin="0,0,-0.2,0" Height="36" VerticalAlignment="Bottom">
             <Button x:Name="Button_StartDay" Content="►" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Play the simulation"/>
-            <Button x:Name="Button_PauseDay" Content="||" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Pause the simulation"/>
-            <Button x:Name="Button_CancelDay" Content="■" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Stop the simulation"/>
-            <Button x:Name="Button_ResetDay" Content="⏎" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Restet the active simulation"/>
+            <Button x:Name="Button_PauseDay" Content="||" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Pause the simulation" IsEnabled="False"/>
+            <Button x:Name="Button_CancelDay" Content="■" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Stop the simulation" IsEnabled="False"/>
+            <Button x:Name="Button_ResetDay" Content="⏎" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Restet the active simulation" IsEnabled="False"/>
             <Label x:Name="Lable_TimeLeft" Content="Time utill closing: 999" Width="125"/>
             <Slider x:Name="Slider_TimeModifyer" Width="100" TickPlacement="BottomRight" Maximum="5" Interval="5" ValueChanged="Slider_TimeModifyer_ValueChanged" Minimum="1" IsSnapToTickEnabled="True" IsEnabled="False"/>
             <Label x:Name="Lable_TimeModifyer" Content="1.0x" Width="31"/>
         </StatusBar>
         <GroupBox x:Name="GroupBox_ControlPanel" Header="Control Panel" Margin="1328,0,-483.6,51.4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <GroupBox x:Name="GroupBox_SettingsSenarios" Header="Settings &amp; Senarios" HorizontalAlignment="Left" Height="247" Margin="0,450,0,0" VerticalAlignment="Top" Width="960">
+        <GroupBox x:Name="GroupBox_SettingsSenarios" Header="Settings &amp; Senarios" Margin="0,0,315,40" Height="247" VerticalAlignment="Bottom">
             <Grid x:Name="Grid_SettingsSenarios" HorizontalAlignment="Left" Width="954" Margin="0,0,-6.8,0">
                 <GroupBox x:Name="GroupBox_PatronsInfoSettings" Header="Patrons Info &amp; Settings" HorizontalAlignment="Left" Height="224" VerticalAlignment="Top" Width="201">
                     <Grid x:Name="Grid_PatronsInfoSettings" Margin="0" HorizontalAlignment="Left" Width="191">

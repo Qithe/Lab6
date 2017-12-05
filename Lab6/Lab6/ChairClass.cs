@@ -12,7 +12,7 @@ namespace Lab6
         public static BlockingCollection<ChairClass> ChairList = new BlockingCollection<ChairClass>();
         public BeerJugClass JugAtChair = new BeerJugClass(0);
         public bool PatronAtChair = false;
-        public static int NumbOfChairs = 10;
+        public static int NumbOfChairs = 9;
 
         public ChairClass(ushort id = 0) : base(id)
         {

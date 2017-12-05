@@ -50,9 +50,7 @@ namespace Lab6
                         }
                     }
                 }
-                Thread.Yield();
             }
-            Thread.Yield();
         }
         
         public void Drink()

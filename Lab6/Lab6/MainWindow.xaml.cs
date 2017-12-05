@@ -47,36 +47,36 @@ namespace Lab6
 
         public void StartSimulation()
         {
-            if(scenario == 2)
+            if(scenario == 1)
             {
                 ShelfClass.ShelfSize = 20;
                 ChairClass.NumbOfChairs = 3;
                 TextBox_ChairsInBar.Text = $"{ChairClass.NumbOfChairs}";
             }
-            else if(scenario == 3)
+            else if(scenario == 2)
             {
                 ShelfClass.ShelfSize = 5;
                 ChairClass.NumbOfChairs = 20;
                 TextBox_ChairsInBar.Text = $"{ChairClass.NumbOfChairs}";
             }
-            else if(scenario == 4)
+            else if(scenario == 3)
             {
                 PatronClass.PatronSpeed = 2;
             }
-            else if(scenario == 5)
+            else if(scenario == 4)
             {
                 ServicePersonelClass.ServiceSpeed = 2;
             }
-            else if(scenario == 6)
+            else if(scenario == 5)
             {
                 AgentClass.OpenTime = 300;
                 TextBox_TimeBarIsOpen.Text = $"{AgentClass.OpenTime}";
             }
-            else if(scenario == 7)
+            else if(scenario == 6)
             {
                 BouncerClass.couplesNight = true;
             }
-            else if(scenario == 8)
+            else if(scenario == 7)
             {
                 BouncerClass.groupNight = true;
                 BouncerClass.BouncerSpeed = 2;

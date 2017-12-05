@@ -28,26 +28,31 @@ namespace Lab6
             while (!wannaGoHome)
             {
                 Thread.Sleep(sek);
-                if (chairQueue.Count > 0)
+                if (Jug.IsEmpty != true)
                 {
-                    if (ThisPatronID == chairQueue.First().ThisPatronID)
+                    if (chairQueue.Count > 0)
                     {
-                        Jug = chairQueue.Take().Jug;
-                        Thread.Sleep(PatronSpeed * 3 * sek);
-
-                        //Look for free chair
-                        while (!LookForChair())
+                        if (ThisPatronID == chairQueue.First().ThisPatronID)
                         {
-                            Thread.Sleep(sek);
+                            Jug = chairQueue.Take().Jug;
+                            Thread.Sleep(PatronSpeed * 3 * sek);
+
+                            //Look for free chair
+                            while (!LookForChair())
+                            {
+                                Thread.Sleep(sek);
+                            }
+                            Drink();
+                            ChairClass.ChairList.ElementAt(chairID).PatronAtChair = false;
+                            wannaGoHome = true;
+                            AddToListBox($"{AgentName} [{ThisPatronID}]", 5);
+                            UpdateQueueValues(barQueue.Count + chairQueue.Count + ChairClass.OccupiedChairs(), 1);
                         }
-                        Drink();
-                        ChairClass.ChairList.ElementAt(chairID).PatronAtChair = false;
-                        wannaGoHome = true;
-                        AddToListBox($"{AgentName} [{ThisPatronID}]", 5);
-                        UpdateQueueValues(barQueue.Count + chairQueue.Count + ChairClass.OccupiedChairs(), 1);
                     }
                 }
+                Thread.Yield();
             }
+            Thread.Yield();
         }
         
         public void Drink()

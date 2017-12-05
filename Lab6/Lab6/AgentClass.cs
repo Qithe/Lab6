@@ -13,7 +13,7 @@ namespace Lab6
     {
         public string AgentName { get; set; }
         public static int sek = 1000;
-        public static int OpenTime = 100;
+        public static int OpenTime = 120;
         
         public Action<string, int> AddToListBox;
         public Action<int, int> UpdateQueueValues;

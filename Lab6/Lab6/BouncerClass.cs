@@ -39,7 +39,7 @@ namespace Lab6
             if(groupNight && bouncerTime > 20)
             {
                 groupNight = false;
-                for (int i = 0; i < 14; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     barQueue.Add(outsideQueue.Take());
                     servedPatrons++;
@@ -59,26 +59,17 @@ namespace Lab6
 
         public void Arrive()
         {
-            PatronClass P = new PatronClass(AddToListBox, UpdateQueueValues);
-            Task.Run(() => P.PatronController());
-            outsideQueue.Add(P);
-            AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+            Task.Run(() => StartPatron());
             if (couplesNight)
             {
-                P = new PatronClass(AddToListBox, UpdateQueueValues);
-                Task.Run(() => P.PatronController());
-                outsideQueue.Add(P);
-                AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+                Task.Run(() => StartPatron());
             }
             if (groupNight && bouncerTime > 20)
             {
-                for(int i = 0; i < 14; i++)
+                for(int i = 0; i < 5; i++)
                 {
-                    P = new PatronClass(AddToListBox, UpdateQueueValues);
-                    Task.Run(() => P.PatronController());
-                    Thread.Sleep(20);
-                    outsideQueue.Add(P);
-                    AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+                    Task.Run(() => StartPatron());
+                    
                 }
             }
             UpdateQueueValues(outsideQueue.Count, 2);
@@ -102,6 +93,15 @@ namespace Lab6
                 bouncerTime++;
                 Thread.Sleep(sek);
             }
+        }
+
+        public void StartPatron()
+        {
+            PatronClass P = new PatronClass(AddToListBox, UpdateQueueValues);
+            Task.Run(() => P.PatronController());
+            Thread.Sleep(20);
+            outsideQueue.Add(P);
+            AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
         }
     }
     

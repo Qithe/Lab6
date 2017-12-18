@@ -101,9 +101,10 @@ namespace Lab6
         public void StartPatron()
         {
             PatronClass P = new PatronClass(AddToListBox, UpdateQueueValues);
-            Task.Run(() => P.PatronController());
+            AddToListBox($"{P.AgentName} [{P.ThisPatronID}]", 0);
             outsideQueue.Add(P);
-            AddToListBox($"{outsideQueue.Last().AgentName} [{outsideQueue.Last().ThisPatronID}]", 0);
+            Task.Run(() => P.PatronController());
+            
             Thread.Sleep(20);
         }
     }

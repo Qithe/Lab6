@@ -95,7 +95,7 @@ namespace Lab6
 
         private void Button_StartStopDay_Click(object sender, RoutedEventArgs e)
         {
-            Slider_TimeModifyer.IsEnabled ^= true;
+            //Slider_TimeModifyer.IsEnabled ^= true;
             StartSimulation();
         }
 

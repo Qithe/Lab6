@@ -40,7 +40,7 @@
             <Button x:Name="Button_CancelDay" Content="■" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Stop the simulation" IsEnabled="False"/>
             <Button x:Name="Button_ResetDay" Content="⏎" Width="20" Click="Button_StartStopDay_Click" Height="19.2" FontSize="14" FontWeight="Bold" ToolTip="Restet the active simulation" IsEnabled="False"/>
             <Label x:Name="Lable_TimeLeft" Content="Time utill closing: 999" Width="125"/>
-            <Slider x:Name="Slider_TimeModifyer" Width="100" TickPlacement="BottomRight" Maximum="5" Interval="5" ValueChanged="Slider_TimeModifyer_ValueChanged" Minimum="1" IsSnapToTickEnabled="True" IsEnabled="False"/>
+            <Slider x:Name="Slider_TimeModifyer" Width="100" TickPlacement="BottomRight" Maximum="5" Interval="5" ValueChanged="Slider_TimeModifyer_ValueChanged" Minimum="1" IsSnapToTickEnabled="True"/>
             <Label x:Name="Lable_TimeModifyer" Content="1.0x" Width="31"/>
         </StatusBar>
         <GroupBox x:Name="GroupBox_ControlPanel" Header="Control Panel" Margin="1328,0,-483.6,51.4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
